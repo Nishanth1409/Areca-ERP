@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #fff8f1;
+  --foreground: #7c2d12;
+  --surface: #ffffff;
+  --surface-alt: #fff1e6;
+  --border: #fed7aa;
+  --accent: #ea580c;
+  --accent-soft: #ffedd5;
 }
 
 @theme inline {
@@ -12,15 +18,38 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  min-height: 100%;
+  background-color: #fff8f1 !important;
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top, #fff1e6 0%, #fff8f1 58%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+input,
+select,
+textarea {
+  @apply rounded-lg border px-3 py-2 text-sm outline-none;
+  border-color: var(--border);
+  background: #fffdfb;
+  color: #9a3412;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.12);
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+.card-surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
