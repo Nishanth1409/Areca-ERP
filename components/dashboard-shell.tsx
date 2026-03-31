@@ -59,14 +59,14 @@ export function DashboardShell({ children }: PropsWithChildren) {
 
   return (
     <div className="min-h-screen p-4 md:p-6">
-      <header className="card-surface mx-auto mb-6 flex max-w-7xl flex-wrap items-center justify-between gap-3 rounded-xl p-4 shadow-sm">
+      <header className="card-surface mb-6 flex max-w-7xl flex-wrap items-center justify-between gap-3 rounded-xl p-4 shadow-sm">
         <Image
           src="/SRYN.png"
           alt="SRYN Areca logo"
-          width={64}
-          height={64}
+          width={80}
+          height={80}
           quality={100}
-          className="h-16 w-16 rounded-md"
+          className="h-20 w-20 rounded-md"
         />
         <nav className="flex flex-wrap items-center gap-2">
           {links.map((link) => (
