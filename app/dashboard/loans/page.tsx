@@ -16,11 +16,31 @@ export default function LoansPage() {
   const [rows, setRows] = useState<Loan[]>([]);
   const [search, setSearch] = useState("");
   const [activeOnly, setActiveOnly] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`/api/loans?active=${activeOnly}`)
-      .then((res) => res.json())
-      .then((data) => setRows(Array.isArray(data) ? data : []));
+    const controller = new AbortController();
+
+    async function loadLoans() {
+      try {
+        setError(null);
+        const res = await fetch(`/api/loans?active=${activeOnly}`, {
+          signal: controller.signal,
+        });
+        if (!res.ok) {
+          throw new Error(`Failed to load loans: ${res.status}`);
+        }
+        const data = await res.json();
+        setRows(Array.isArray(data) ? data : []);
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        setRows([]);
+        setError("Unable to load loans right now. Please check your connection and try again.");
+      }
+    }
+
+    void loadLoans();
+    return () => controller.abort();
   }, [activeOnly]);
 
   const filtered = useMemo(
@@ -47,6 +67,11 @@ export default function LoansPage() {
         </button>
       </div>
       <div className="mt-4 overflow-x-auto">
+        {error ? (
+          <p className="mb-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+            {error}
+          </p>
+        ) : null}
         <table className="min-w-full text-sm">
           <thead>
             <tr className="text-left text-orange-700">
@@ -62,7 +87,9 @@ export default function LoansPage() {
             {filtered.map((loan) => (
               <tr key={loan.id} className="border-t border-orange-200">
                 <td className="py-2">
-                  {loan.employee.fullName} ({loan.employee.code})
+                  {loan.employee
+                    ? `${loan.employee.fullName} (${loan.employee.code})`
+                    : "Unknown employee"}
                 </td>
                 <td>₹{loan.principal}</td>
                 <td>{loan.interestRate}%</td>

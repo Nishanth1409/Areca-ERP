@@ -66,6 +66,7 @@ export function DashboardShell({ children }: PropsWithChildren) {
           width={80}
           height={80}
           quality={100}
+          loading="eager"
           className="h-20 w-20 rounded-md"
         />
         <nav className="flex flex-wrap items-center gap-2">
