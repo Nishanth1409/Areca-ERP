@@ -199,10 +199,21 @@ Build the APK from Android Studio (`Build → Build APK(s)`).
 
 ---
 
+## Live & credits
+
+| | |
+| :--- | :--- |
+| **Author** | [Nishanth K R](https://github.com/Nishanth1409) |
+| **Repo** | [Nishanth1409/Areca-ERP](https://github.com/Nishanth1409/Areca-ERP) |
+| **Portfolio** | [nkrportfolio.vercel.app](https://nkrportfolio.vercel.app) |
+
+---
+
 <div align="center">
 
-Made with care by **Nishanth K R** — *son of a farmer, always a farmer.*
+*Son of a farmer · always a farmer.*
 
-[Portfolio](https://nkrportfolio.vercel.app) · [GitHub](https://github.com/Nishanth1409)
+[GitHub](https://github.com/Nishanth1409) · [Portfolio](https://nkrportfolio.vercel.app)
 
 </div>
+
